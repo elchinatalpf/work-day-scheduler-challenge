@@ -2,6 +2,22 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+
+  // 1. display time.
+  $(function onrealTime() {
+    var currentTime = dayjs();
+    $("#currentDay").text(currentTime.format('dddd, MMMM D, YYYY hh:mm:ss a'));
+    
+    var intertal = setInterval(currentTime, 1000);
+  });
+
+  // 2. standars business hour from 9 to 5
+  // 3. color to determine past, present and future
+  // 4. enter an event
+  // 5. save event with block button in the local storage
+  // 6. refresh page, the event persist.
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
