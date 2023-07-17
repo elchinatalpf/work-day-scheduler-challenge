@@ -3,10 +3,16 @@
 // in the html.
 $(function () {
 
+  
+  
+  // 3. color to determine past, present and future with toggleClass.
+  $(function presentHour() {
+    $(".time-block").each(function () {
+      $(this).toggleClass("present");
+    })
+  });
 
   // 2. standars business hour from 9 to 5
-  $()
-
   // 1. display time.
   $(function onrealTime() {
     var currentTime = dayjs();
@@ -17,7 +23,6 @@ $(function () {
     }, 1000);
   });
 
-  // 3. color to determine past, present and future
   // 4. enter an event
   // 5. save event with block button in the local storage
   // 6. refresh page, the event persist.
