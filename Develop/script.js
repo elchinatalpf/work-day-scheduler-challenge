@@ -3,15 +3,20 @@
 // in the html.
 $(function () {
 
+
+  // 2. standars business hour from 9 to 5
+  $()
+
   // 1. display time.
   $(function onrealTime() {
     var currentTime = dayjs();
     $("#currentDay").text(currentTime.format('dddd, MMMM D, YYYY hh:mm:ss a'));
-    
-    var intertal = setInterval(currentTime, 1000);
+    var interval = setInterval( function () {
+      currentTime = dayjs();
+      $("#currentDay").text(currentTime.format('dddd, MMMM D, YYYY hh:mm:ss a'));
+    }, 1000);
   });
 
-  // 2. standars business hour from 9 to 5
   // 3. color to determine past, present and future
   // 4. enter an event
   // 5. save event with block button in the local storage
@@ -35,5 +40,5 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  // TODO: Add code to display the current date in the header of the page.
+  // TODO: Add code to display the current date in the header of the page. Done.
 });
