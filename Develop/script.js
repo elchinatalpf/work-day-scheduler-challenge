@@ -8,7 +8,9 @@ $(function () {
   // 3. color to determine past, present and future with toggleClass.
   $(function presentHour() {
     $(".time-block").each(function () {
-      $(this).toggleClass("present");
+      if ($(this).toggleClass("present")) {
+
+      }
     })
   });
 
@@ -20,6 +22,7 @@ $(function () {
     var interval = setInterval( function () {
       currentTime = dayjs();
       $("#currentDay").text(currentTime.format('dddd, MMMM D, YYYY hh:mm:ss a'));
+      console.log(currentTime);
     }, 1000);
   });
 
@@ -47,3 +50,11 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page. Done.
 });
+
+
+// var divEl = $("div");
+// var parentEl = $(".container-fluid");
+// divEl.append("you can put any text in here you want or any elements  <div> You can put elements in like this too</div> both work. You could copy and paste an entire time block into here if you wanted.");
+// divEl.addClass("time-block");
+// divEl.attr("id", "hour-12");
+// parentEl.append(divEl);
