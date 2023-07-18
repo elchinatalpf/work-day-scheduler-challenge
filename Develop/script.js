@@ -2,29 +2,44 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
-
+  var currentTime = dayjs();
   
   
-  // 3. color to determine past, present and future with toggleClass.
-  $(function presentHour() {
+  // Here we toggle the class 
+  function presentHour() {
     $(".time-block").each(function () {
-      if ($(this).toggleClass("present")) {
+      var entryTextHour = parseInt($(this).attr("id").split("hour")[1]);
+      console.log(entryTextHour);
 
-      }
-    })
-  });
+        if (entryTextHour < currentTime) {
+          $(this).addClass("past");
+          $(this).removeClass("present");
+          $(this).removeClass("future");
+        } else if (entryTextHour === currentTime) {
+          $(this).removeClass("past");
+          $(this).addClass("present");
+          $(this).removeClass("future");
+        } else {
+          $(this).removeClass("past");
+          $(this).removeClass("present");
+          $(this).addClass("future");
+        }
 
-  // 2. standars business hour from 9 to 5
-  // 1. display time.
-  $(function onrealTime() {
-    var currentTime = dayjs();
+    });
+  }
+
+// Here we display the time
+  function onrealTime() {
     $("#currentDay").text(currentTime.format('dddd, MMMM D, YYYY hh:mm:ss a'));
     var interval = setInterval( function () {
       currentTime = dayjs();
       $("#currentDay").text(currentTime.format('dddd, MMMM D, YYYY hh:mm:ss a'));
-      console.log(currentTime);
     }, 1000);
-  });
+  }
+  onrealTime();
+  presentHour();
+  
+});
 
   // 4. enter an event
   // 5. save event with block button in the local storage
@@ -49,12 +64,3 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page. Done.
-});
-
-
-// var divEl = $("div");
-// var parentEl = $(".container-fluid");
-// divEl.append("you can put any text in here you want or any elements  <div> You can put elements in like this too</div> both work. You could copy and paste an entire time block into here if you wanted.");
-// divEl.addClass("time-block");
-// divEl.attr("id", "hour-12");
-// parentEl.append(divEl);
