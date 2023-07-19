@@ -1,5 +1,7 @@
 # Work Day Scheduler Project
-This project is to organize your day. It uses a provided starter code and all Its functionality is only in one jQuery function. Also it uses the Dayjs library to display the time. Also marks every current hour with a color red, the past with grey, and the future hour with a green color.
+![](./Assets/ScreenShot%20Work%20Day%20Scheduler.png)
+
+This project is designed to help you organize your day. It uses a provided starter code, and all its functionality is contained within a single jQuery function. Additionally, it utilizes the Dayjs library to display the current time and marks each hour with a corresponding color: red for the current hour, grey for the past hours, and green for the future hour. Furthermore, it saves the user's input in local storage, allowing the data to persist even after reloading the page.
 
 ## Tasks Achieved
 GIVEN I am using a daily planner to create a schedule
