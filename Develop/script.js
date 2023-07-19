@@ -3,42 +3,60 @@
 // in the html.
 $(function () {
   var currentTime = dayjs();
-  
-  
-  // Here we toggle the class 
+
+  function userInput () {
+    var safeButton = $(".savebtn");
+    safeButton.on("click", function () {
+      // var userText = $(".description").val();
+      var key = $(this).parent().attr("id");
+      var value = $(this).siblings(".description").val();
+      localStorage.setItem(key, value);
+    });
+
+  }
+
+
+  $(".time-block").each(function () {
+    var userKey = $(this).attr("id");
+    var userValue = localStorage.getItem(userKey);
+    $(this).find(".description").val(userValue);
+  });
+
+
+  // Here we toggle the class
   function presentHour() {
     $(".time-block").each(function () {
       var entryTextHour = parseInt($(this).attr("id").split("hour")[1]);
-      console.log(entryTextHour);
 
-        if (entryTextHour < currentTime) {
-          $(this).addClass("past");
-          $(this).removeClass("present");
-          $(this).removeClass("future");
-        } else if (entryTextHour === currentTime) {
-          $(this).removeClass("past");
-          $(this).addClass("present");
-          $(this).removeClass("future");
-        } else {
-          $(this).removeClass("past");
-          $(this).removeClass("present");
-          $(this).addClass("future");
-        }
-
+      if (entryTextHour < currentTime) {
+        $(this).addClass("past");
+        $(this).removeClass("present");
+        $(this).removeClass("future");
+      } else if (entryTextHour === currentTime) {
+        $(this).removeClass("past");
+        $(this).addClass("present");
+        $(this).removeClass("future");
+      } else {
+        $(this).removeClass("past");
+        $(this).removeClass("present");
+        $(this).addClass("future");
+      }
     });
   }
 
-// Here we display the time
+  // Here we display the time
   function onrealTime() {
-    $("#currentDay").text(currentTime.format('dddd, MMMM D, YYYY hh:mm:ss a'));
-    var interval = setInterval( function () {
+    $("#currentDay").text(currentTime.format("dddd, MMMM D, YYYY hh:mm:ss a"));
+    var interval = setInterval(function () {
       currentTime = dayjs();
-      $("#currentDay").text(currentTime.format('dddd, MMMM D, YYYY hh:mm:ss a'));
+      $("#currentDay").text(
+        currentTime.format("dddd, MMMM D, YYYY hh:mm:ss a")
+      );
     }, 1000);
   }
+  userInput();
   onrealTime();
   presentHour();
-  
 });
 
   // 4. enter an event
