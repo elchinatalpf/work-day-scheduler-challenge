@@ -4,42 +4,36 @@
 $(function () {
   var currentTime = dayjs();
 
+  // userInput gets the user's text from description class and sets it into the local storage as key and value.
   function userInput () {
-    var safeButton = $(".savebtn");
-    safeButton.on("click", function () {
-      // var userText = $(".description").val();
+    $(".saveBtn").on("click", function () {
       var key = $(this).parent().attr("id");
       var value = $(this).siblings(".description").val();
       localStorage.setItem(key, value);
     });
 
   }
-
-
+  // 
   $(".time-block").each(function () {
     var userKey = $(this).attr("id");
     var userValue = localStorage.getItem(userKey);
     $(this).find(".description").val(userValue);
+    console.log(userKey, userValue);
   });
 
 
-  // Here we toggle the class
+  // Here we toggle the class. This is not working propperly yet.
   function presentHour() {
+    var currentHour = currentTime.hour();
     $(".time-block").each(function () {
       var entryTextHour = parseInt($(this).attr("id").split("hour")[1]);
 
-      if (entryTextHour < currentTime) {
-        $(this).addClass("past");
-        $(this).removeClass("present");
-        $(this).removeClass("future");
-      } else if (entryTextHour === currentTime) {
-        $(this).removeClass("past");
-        $(this).addClass("present");
-        $(this).removeClass("future");
+      if (entryTextHour < currentHour) {
+        $(this).addClass("past").removeClass("present future");
+      } else if (entryTextHour === currentHour) {
+        $(this).addClass("present").removeClass("past future");
       } else {
-        $(this).removeClass("past");
-        $(this).removeClass("present");
-        $(this).addClass("future");
+        $(this).addClass("future").removeClass("past present");
       }
     });
   }
@@ -54,6 +48,7 @@ $(function () {
       );
     }, 1000);
   }
+  
   userInput();
   onrealTime();
   presentHour();
